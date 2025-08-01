@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PandaBreak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #2c3e50;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+            background: url('https://iili.io/FgULhJt.png') center/contain no-repeat;
+            margin-right: 15px;
+        }
+
+        .site-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .games-section {
+            background: rgba(44, 62, 80, 0.9);
+            margin: 0 20px;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .dice-icon {
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .dice-icon::before {
+            content: '⚀';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #bdc3c7;
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .game-card {
+            background: #34495e;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 160px;
+            background: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-bottom: 2px solid #2c3e50;
+            /* Espaço para colocar link da imagem */
+        }
+
+        .game-title {
+            padding: 15px 20px;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .game-list-section {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .game-list-section h2 {
+            color: #2ecc71;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .game-list-section p {
+            margin-bottom: 10px;
+            color: #bdc3c7;
+        }
+
+        .last-updated {
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .games-section {
+                margin: 0 10px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"></div>
+        <div class="site-title">PandaBreak</div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Free web games</h1>
+            <p>Some interesting games that can be played directly on web browsers.</p>
+        </section>
+
+        <section class="games-section">
+            <div class="section-header">
+                <h2>Random Games</h2>
+                <div class="dice-icon"></div>
+            </div>
+            <p class="section-subtitle">Don't know what to play? Check the list of games below!</p>
+            
+            <div class="games-grid">
+                <div class="game-card" onclick="openGame('https://edgegames.io/lets-surf/')">
+                    <div class="game-image">
+                        <!-- Colocar link da imagem aqui -->
+                        Imagem do jogo
+                    </div>
+                    <div class="game-title">Edge's Let's Surf</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('https://crossyroad.com/')">
+                    <div class="game-image">
+                        <!-- Colocar link da imagem aqui -->
+                        Imagem do jogo
+                    </div>
+                    <div class="game-title">Crossy Road</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('https://subwaysurfers.co/')">
+                    <div class="game-image">
+                        <!-- Colocar link da imagem aqui -->
+                        Imagem do jogo
+                    </div>
+                    <div class="game-title">Subway Surfers</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('https://totemia.net/')">
+                    <div class="game-image">
+                        <!-- Colocar link da imagem aqui -->
+                        Imagem do jogo
+                    </div>
+                    <div class="game-title">Totemia: Cursed Marbles</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('https://cuttherope.ie/holiday-gift/')">
+                    <div class="game-image">
+                        <!-- Colocar link da imagem aqui -->
+                        Imagem do jogo
+                    </div>
+                    <div class="game-title">Cut the Rope: Holiday Gift</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('https://omnombounce.com/')">
+                    <div class="game-image">
+                        <!-- Colocar link da imagem aqui -->
+                        Imagem do jogo
+                    </div>
+                    <div class="game-title">Om Nom Bounce</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('https://dayofmeat.com/')">
+                    <div class="game-image">
+                        <!-- Colocar link da imagem aqui -->
+                        Imagem do jogo
+                    </div>
+                    <div class="game-title">Day of Meat: Radiation</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('https://asphaltretro.com/')">
+                    <div class="game-image">
+                        <!-- Colocar link da imagem aqui -->
+                        Imagem do jogo
+                    </div>
+                    <div class="game-title">Asphalt Retro</div>
+                </div>
+            </div>
+
+            <div class="game-list-section">
+                <h2>Game list</h2>
+                <p>There are 79 games for you to choose. Check back often for new games!</p>
+                <p class="last-updated">Last updated: May 25, 2025</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function openGame(url) {
+            window.open(url, '_blank');
+        }
+
+        // Animação do dado
+        function animateDice() {
+            const dice = document.querySelector('.dice-icon::before');
+            const diceSymbols = ['🎲', '🎲', '🎲', '🎲', '🎲', '🎲'];
+            let currentSymbol = 0;
+            
+            setInterval(() => {
+                currentSymbol = (currentSymbol + 1) % diceSymbols.length;
+                document.documentElement.style.setProperty('--dice-symbol', `'${diceSymbols[currentSymbol]}'`);
+            }, 2000);
+        }
+
+        // Efeito de hover nos cards
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Inicializar animações
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animação de entrada dos cards
+            const cards = document.querySelectorAll('.game-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
