@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PandaBreak</title>
+    <title>PandaBreak - HTML5 Games</title>
     <style>
         * {
             margin: 0;
@@ -66,34 +66,13 @@
         }
 
         .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: center;
             margin-bottom: 20px;
             color: white;
         }
 
         .section-header h2 {
             font-size: 1.5rem;
-            margin-right: 10px;
-        }
-
-        .dice-icon {
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 4px;
-            position: relative;
-        }
-
-        .dice-icon::before {
-            content: '⚀';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 16px;
-            color: #2c3e50;
         }
 
         .section-subtitle {
@@ -195,14 +174,13 @@
 
     <main>
         <section class="hero">
-            <h1>Free web games</h1>
+            <h1>HTML5 games</h1>
             <p>Some interesting games that can be played directly on web browsers.</p>
         </section>
 
         <section class="games-section">
             <div class="section-header">
                 <h2>Random Games</h2>
-                <div class="dice-icon"></div>
             </div>
             <p class="section-subtitle">Don't know what to play? Check the list of games below!</p>
             
@@ -220,13 +198,12 @@
                         <!-- Colocar link da imagem aqui -->
                         Imagem do jogo
                     </div>
-                    <div class="game-title">Crossy Road</div>
+                    <div class="game-title">Crossy Road (HTML5 edition)</div>
                 </div>
 
                 <div class="game-card" onclick="openGame('https://subwaysurfers.co/')">
-                    <div class="game-image">
-                        <!-- Colocar link da imagem aqui -->
-                        https://iili.io/FgrllMN.md.png
+                    <div class="game-image" style="background-image: url('https://iili.io/FgrllMN.md.png'); background-size: cover; background-position: center;">
+                        <!-- Imagem carregada -->
                     </div>
                     <div class="game-title">Subway Surfers</div>
                 </div>
@@ -288,7 +265,7 @@
         // Animação do dado
         function animateDice() {
             const dice = document.querySelector('.dice-icon::before');
-            const diceSymbols = ['🎲', '🎲', '🎲', '🎲', '🎲', '🎲'];
+            const diceSymbols = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
             let currentSymbol = 0;
             
             setInterval(() => {
