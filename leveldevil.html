@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PandaBreak</title>
+     <link rel="icon" href="https://iili.io/FyV5j8Q.png" type="image/png">
     <style>
         * {
             margin: 0;
@@ -62,14 +63,14 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            width: 1000px;
-            height: 700px;
+            width: 1200px;
+            height: 800px;
             position: relative;
         }
 
         .game-frame {
-            width: 960px;
-            height: 660px;
+            width: 1160px;
+            height: 760px;
             border: none;
             border-radius: 10px;
             background-color: #2C3E50;
@@ -78,6 +79,56 @@
             justify-content: center;
             font-size: 18px;
             color: #BDC3C7;
+            position: relative;
+        }
+
+        /* Fullscreen Button */
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: rgba(52, 73, 94, 0.9);
+            border: 2px solid #7F8C8D;
+            border-radius: 8px;
+            color: #ECF0F1;
+            font-size: 16px;
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 45px;
+            min-height: 45px;
+        }
+
+        .fullscreen-btn:hover {
+            background-color: rgba(52, 152, 219, 0.9);
+            border-color: #3498DB;
+            transform: scale(1.05);
+        }
+
+        .fullscreen-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Fullscreen styles */
+        .game-container.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1000;
+            border-radius: 0;
+            padding: 0;
+        }
+
+        .game-container.fullscreen .game-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
         }
 
         /* Game Info */
@@ -89,7 +140,7 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            width: 1000px;
+            width: 1200px;
         }
 
         .game-logo {
@@ -104,6 +155,13 @@
             font-size: 12px;
             text-align: center;
             border: 2px dashed #5D6D7E;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .game-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
         .game-logo img {
@@ -113,14 +171,41 @@
             border-radius: 8px;
         }
 
+        .game-text-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
         .game-name {
             font-size: 24px;
             font-weight: bold;
             color: #ECF0F1;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .game-name:hover {
+            color: #3498DB;
         }
 
         .game-name.placeholder {
             color: #BDC3C7;
+            font-style: italic;
+        }
+
+        .game-author {
+            font-size: 14px;
+            color: #95A5A6;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .game-author:hover {
+            color: #3498DB;
+        }
+
+        .game-author.placeholder {
             font-style: italic;
         }
 
@@ -144,17 +229,17 @@
             }
 
             .game-container {
-                width: 1000px;
-                height: 700px;
-                transform: scale(0.4);
+                width: 1200px;
+                height: 800px;
+                transform: scale(0.35);
                 transform-origin: center;
             }
 
             .game-info {
-                width: 1000px;
-                transform: scale(0.4);
+                width: 1200px;
+                transform: scale(0.35);
                 transform-origin: center;
-                margin-top: -150px;
+                margin-top: -180px;
             }
         }
     </style>
@@ -162,28 +247,36 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <img src="https://iili.io/FgULhJt.png" alt="PandaBreak Logo" class="logo">
+        <img src="https://iili.io/FyV5j8Q.png" alt="PandaBreak Logo" class="logo">
         <h1 class="site-name">PandaBreak</h1>
     </header>
 
     <!-- Main Content -->
     <main class="main-content">
         <!-- Game Container -->
-        <div class="game-container">
+        <div class="game-container" id="gameContainer">
             <div class="game-frame" id="gameFrame">
                 <!-- Aqui você pode inserir o HTML do jogo -->
                 <p>Carregue seu jogo aqui...</p>
             </div>
+            <button class="fullscreen-btn" id="fullscreenBtn" onclick="toggleFullscreen()" title="Tela cheia">
+                ⛶
+            </button>
         </div>
 
         <!-- Game Info -->
         <div class="game-info">
-            <div class="game-logo" id="gameLogo">
+            <div class="game-logo" id="gameLogo" onclick="redirectToSite()">
                 <!-- Logo do jogo será inserida aqui -->
                 Logo do Jogo
             </div>
-            <div class="game-name placeholder" id="gameName">
-                Nome do Jogo
+            <div class="game-text-info">
+                <div class="game-name placeholder" id="gameName" onclick="redirectToSite()">
+                    Nome do Jogo
+                </div>
+                <div class="game-author placeholder" id="gameAuthor" onclick="redirectToSite()">
+                    By _____
+                </div>
             </div>
         </div>
     </main>
@@ -195,13 +288,16 @@
         
         // ==== CONFIGURAÇÃO DA LOGO E NOME ====
         const gameName = 'Level Devil'; // Altere aqui o nome do jogo
-        const gameLogoUrl = 'https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=80,height=80,fit=cover,f=auto/0c3d1446c6992c2b88a9498de054688b/level-devil.png'; // Exemplo: 'https://exemplo.com/logo-jogo.png'
+        const gameLogoUrl = 'https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=40,height=40,fit=cover,f=auto/0c3d1446c6992c2b88a9498de054688b/level-devil.png'; // Exemplo: 'https://exemplo.com/logo-jogo.png'
+        const gameAuthor = 'Unept'; // Altere aqui o nome do autor/desenvolvedor
+        const redirectUrl = 'https://pandabreak.vercel.app/'; // Altere aqui o site para onde redirecionar
 
         // ==== CÓDIGO DO SISTEMA (NÃO ALTERAR) ====
         function loadGame() {
             const gameFrame = document.getElementById('gameFrame');
             const gameNameElement = document.getElementById('gameName');
             const gameLogoElement = document.getElementById('gameLogo');
+            const gameAuthorElement = document.getElementById('gameAuthor');
 
             // Carrega o jogo via iframe se tiver URL
             if (gameUrl) {
@@ -220,7 +316,51 @@
             if (gameLogoUrl) {
                 gameLogoElement.innerHTML = `<img src="${gameLogoUrl}" alt="Logo ${gameName}">`;
             }
+
+            // Define o autor do jogo
+            if (gameAuthor && gameAuthor !== '_____') {
+                gameAuthorElement.textContent = `By ${gameAuthor}`;
+                gameAuthorElement.classList.remove('placeholder');
+            }
         }
+
+        // Função para redirecionar para o site
+        function redirectToSite() {
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            }
+        }
+
+        // Função para alternar tela cheia
+        function toggleFullscreen() {
+            const gameContainer = document.getElementById('gameContainer');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+            if (gameContainer.classList.contains('fullscreen')) {
+                // Sair da tela cheia
+                gameContainer.classList.remove('fullscreen');
+                fullscreenBtn.innerHTML = '⛶';
+                fullscreenBtn.title = 'Tela cheia';
+            } else {
+                // Entrar em tela cheia
+                gameContainer.classList.add('fullscreen');
+                fullscreenBtn.innerHTML = '✕';
+                fullscreenBtn.title = 'Sair da tela cheia';
+            }
+        }
+
+        // Tecla ESC para sair da tela cheia
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const gameContainer = document.getElementById('gameContainer');
+                const fullscreenBtn = document.getElementById('fullscreenBtn');
+                if (gameContainer.classList.contains('fullscreen')) {
+                    gameContainer.classList.remove('fullscreen');
+                    fullscreenBtn.innerHTML = '⛶';
+                    fullscreenBtn.title = 'Tela cheia';
+                }
+            }
+        });
 
         // Carrega o jogo quando a página carregar
         window.addEventListener('load', loadGame);
