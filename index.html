@@ -254,7 +254,7 @@
             <div class="game-list-section">
                 <h2>⬆⬆⬆</h2>
                 <p>6 games for you to play. Expect for new games soon!</p>
-                <p class="last-updated">September 27, 2025</p>
+                <p class="last-updated">October 17, 2025</p>
             </div>
         </section>
     </main>
@@ -265,17 +265,7 @@
         }
 
         // Animação do dado
-        function animateDice() {
-            const dice = document.querySelector('.dice-icon::before');
-            const diceSymbols = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
-            let currentSymbol = 0;
-            
-            setInterval(() => {
-                currentSymbol = (currentSymbol + 1) % diceSymbols.length;
-                document.documentElement.style.setProperty('--dice-symbol', `'${diceSymbols[currentSymbol]}'`);
-            }, 2000);
-        }
-
+   
         // Efeito de hover nos cards
         document.querySelectorAll('.game-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
