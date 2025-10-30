@@ -60,7 +60,7 @@
 
         .games-section {
             background: rgba(44, 62, 80, 0.9);
-            margin: 0 20px;
+            margin: 0 20px 40px;
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -86,7 +86,6 @@
         .games-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 1fr);
             gap: 25px;
             margin-bottom: 60px;
             max-width: 1200px;
@@ -118,7 +117,8 @@
             color: #7f8c8d;
             font-size: 0.9rem;
             border-bottom: 2px solid #2c3e50;
-            /* Espaço para colocar link da imagem */
+            background-size: cover;
+            background-position: center;
         }
 
         .game-title {
@@ -151,6 +151,12 @@
             font-size: 0.9rem;
         }
 
+        @media (max-width: 1024px) {
+            .games-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -161,8 +167,19 @@
             }
             
             .games-section {
-                margin: 0 10px;
+                margin: 0 10px 40px;
                 padding: 20px;
+            }
+
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -187,99 +204,143 @@
             
             <div class="games-grid">
                 <div class="game-card" onclick="openGame('https://pandabreak.vercel.app/leveldevil.html')">
-                    <div class="game-image" style="background-image: url('https://iili.io/FrkhcIS.md.png'); background-size: cover; background-position: center;">
-                        <!-- Colocar link da imagem aqui -->
-                   
-                    </div>
+                    <div class="game-image" style="background-image: url('https://iili.io/FrkhcIS.md.png');"></div>
                     <div class="game-title">Level Devil</div>
                 </div>
 
                 <div class="game-card" onclick="openGame('https://pandabreak.vercel.app/halloweendoodle.html')">
-                     <div class="game-image" style="background-image: url('https://betanews.com/wp-content/uploads/2016/10/halloween-google-doodle.jpg'); background-size: cover; background-position: center;">
-                        <!-- Colocar link da imagem aqui -->
-                   
-                    </div>
+                    <div class="game-image" style="background-image: url('https://betanews.com/wp-content/uploads/2016/10/halloween-google-doodle.jpg');"></div>
                     <div class="game-title">Halloween 2016 Doodle</div>
                 </div>
 
                 <div class="game-card" onclick="openGame('https://pandabreak.vercel.app/subwaysurfers.html')">
-                    <div class="game-image" style="background-image: url('https://iili.io/FgrllMN.md.png'); background-size: cover; background-position: center;">
-                        <!-- Imagem carregada -->
-                    </div>
+                    <div class="game-image" style="background-image: url('https://iili.io/FgrllMN.md.png');"></div>
                     <div class="game-title">Subway Surfers</div>
                 </div>
 
                 <div class="game-card" onclick="openGame('https://pandabreak.vercel.app/evo.html')">
-                    <div class="game-image" style="background-image: url('https://iili.io/FgZY0Nt.png'); background-size: cover; background-position: center;">    
-                     .
-                      
-                    </div>
+                    <div class="game-image" style="background-image: url('https://iili.io/FgZY0Nt.png');"></div>
                     <div class="game-title">EvoWorld.io</div>
                 </div>
 
                 <div class="game-card" onclick="openGame('https://pandabreak.vercel.app/soccer.html')">
-                    <div class="game-image" style="background-image: url('https://iili.io/Fgpwl4f.md.png'); background-size: cover; background-position: center;">   
-                       
-                        <!-- Colocar link da imagem aqui -->
-                       
-                    </div>
+                    <div class="game-image" style="background-image: url('https://iili.io/Fgpwl4f.md.png');"></div>
                     <div class="game-title">Soccer Skills World Cup</div>
                 </div>
 
                 <div class="game-card" onclick="openGame('https://pandabreak.vercel.app/townscaper.html')">
-                     <div class="game-image" style="background-image: url('https://iili.io/Kv7sFYG.md.png'); background-size: cover; background-position: center;"> 
-                        <!-- Colocar link da imagem aqui -->
-                        
-                    </div>
+                    <div class="game-image" style="background-image: url('https://iili.io/Kv7sFYG.md.png');"></div>
                     <div class="game-title">Townscaper</div>
                 </div>
 
                 <div class="game-card" onclick="openGame('https://pandabreak.vercel.app/geometry.html')">
-                     <div class="game-image" style="background-image: url('https://iili.io/KvJzV72.md.png'); background-size: cover; background-position: center;"> 
-                        <!-- Colocar link da imagem aqui -->
-                    
-                    </div>
+                    <div class="game-image" style="background-image: url('https://iili.io/KvJzV72.md.png');"></div>
                     <div class="game-title">Geometry Dash Lite</div>
                 </div>
 
-                <div class="game-card" onclick="openGame('https://asphaltretro.com/')">
-                    <div class="game-image" style="background-image: url('https://iili.io/FgPln1V.md.png'); background-size: cover; background-position: center;"> 
-                        <!-- Colocar link da imagem aqui -->
-                       
-                    </div>
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image" style="background-image: url('https://iili.io/FgPln1V.md.png');"></div>
                     <div class="game-title">Soon</div>
+                </div>
+
+                <!-- Novos espaços para jogos -->
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 1</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 2</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 3</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 4</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 5</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 6</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 7</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 8</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 9</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 10</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 11</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 12</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 13</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 14</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 15</div>
+                </div>
+
+                <div class="game-card" onclick="openGame('#')">
+                    <div class="game-image">Em breve</div>
+                    <div class="game-title">Novo Jogo 16</div>
                 </div>
             </div>
 
             <div class="game-list-section">
                 <h2>⬆⬆⬆</h2>
-                <p>6 games for you to play. Expect for new games soon!</p>
-                <p class="last-updated">October 17, 2025</p>
+                <p>24 espaços para jogos. Mais jogos em breve!</p>
+                <p class="last-updated">October 30, 2025</p>
             </div>
         </section>
     </main>
 
     <script>
         function openGame(url) {
-            window.open(url, '_blank');
+            if (url && url !== '#') {
+                window.location.href = url;
+            }
         }
 
-        // Animação do dado
-   
-        // Efeito de hover nos cards
-        document.querySelectorAll('.game-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Inicializar animações
         document.addEventListener('DOMContentLoaded', function() {
-            // Animação de entrada dos cards
             const cards = document.querySelectorAll('.game-card');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
@@ -289,7 +350,7 @@
                     card.style.transition = 'all 0.6s ease';
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
-                }, index * 100);
+                }, index * 50);
             });
         });
     </script>
