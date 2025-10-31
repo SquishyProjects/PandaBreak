@@ -1,1 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PandaBreak</title>
+     <link rel="icon" href="https://iili.io/FyV5j8Q.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2C3E50;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background-color: #34495E;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            border-radius: 8px;
+        }
+
+        .site-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ECF0F1;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            gap: 30px;
+        }
+
+        /* Game Container */
+        .game-container {
+            background-color: #34495E;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            width: 1200px;
+            height: 800px;
+            position: relative;
+        }
+
+        .game-frame {
+            width: 1160px;
+            height: 760px;
+            border: none;
+            border-radius: 10px;
+            background-color: #2C3E50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #BDC3C7;
+            position: relative;
+        }
+
+        /* Fullscreen Button */
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: rgba(52, 73, 94, 0.9);
+            border: 2px solid #7F8C8D;
+            border-radius: 8px;
+            color: #ECF0F1;
+            font-size: 16px;
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 45px;
+            min-height: 45px;
+        }
+
+        .fullscreen-btn:hover {
+            background-color: rgba(52, 152, 219, 0.9);
+            border-color: #3498DB;
+            transform: scale(1.05);
+        }
+
+        .fullscreen-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Fullscreen styles */
+        .game-container.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1000;
+            border-radius: 0;
+            padding: 0;
+        }
+
+        .game-container.fullscreen .game-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+        }
+
+        /* Game Info */
+        .game-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background-color: #34495E;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 1200px;
+        }
+
+        .game-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            background-color: #2C3E50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #BDC3C7;
+            font-size: 12px;
+            text-align: center;
+            border: 2px dashed #5D6D7E;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .game-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .game-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .game-text-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .game-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ECF0F1;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .game-name:hover {
+            color: #3498DB;
+        }
+
+        .game-name.placeholder {
+            color: #BDC3C7;
+            font-style: italic;
+        }
+
+        .game-author {
+            font-size: 14px;
+            color: #95A5A6;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .game-author:hover {
+            color: #3498DB;
+        }
+
+        .game-author.placeholder {
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 20px;
+            }
+
+            .site-name {
+                font-size: 20px;
+            }
+
+            .logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .main-content {
+                padding: 20px 10px;
+            }
+
+            .game-container {
+                width: 1200px;
+                height: 800px;
+                transform: scale(0.35);
+                transform-origin: center;
+            }
+
+            .game-info {
+                width: 1200px;
+                transform: scale(0.35);
+                transform-origin: center;
+                margin-top: -180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <img src="https://iili.io/FyV5j8Q.png" alt="PandaBreak Logo" class="logo">
+        <h1 class="site-name">PandaBreak</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Game Container -->
+        <div class="game-container" id="gameContainer">
+            <div class="game-frame" id="gameFrame">
+                <!-- Aqui você pode inserir o HTML do jogo -->
+                <p>Carregue seu jogo aqui...</p>
+            </div>
+            <button class="fullscreen-btn" id="fullscreenBtn" onclick="toggleFullscreen()" title="Tela cheia">
+                ⛶
+            </button>
+        </div>
+
+        <!-- Game Info -->
+        <div class="game-info">
+            <div class="game-logo" id="gameLogo" onclick="redirectToSite()">
+                <!-- Logo do jogo será inserida aqui -->
+                Logo do Jogo
+            </div>
+            <div class="game-text-info">
+                <div class="game-name placeholder" id="gameName" onclick="redirectToSite()">
+                    Nome do Jogo
+                </div>
+                <div class="game-author placeholder" id="gameAuthor" onclick="redirectToSite()">
+                    By _____
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ==== CONFIGURAÇÃO DO JOGO ====
+        // Cole aqui o link do HTML do seu jogo
+        const gameUrl = 'https://searchplayground.google/pacman/halloween/'; // Exemplo: 'https://exemplo.com/meu-jogo.html'
+        
+        // ==== CONFIGURAÇÃO DA LOGO E NOME ====
+        const gameName = 'Google Pac-Man 2025'; // Altere aqui o nome do jogo
+        const gameLogoUrl = 'https://searchplayground.google/pacman/halloween/static/loading.gif'; // Exemplo: 'https://exemplo.com/logo-jogo.png'
+        const gameAuthor = 'Google'; // Altere aqui o nome do autor/desenvolvedor
+        const redirectUrl = 'https://pandabreak.vercel.app/'; // Altere aqui o site para onde redirecionar
+
+        // ==== CÓDIGO DO SISTEMA (NÃO ALTERAR) ====
+        function loadGame() {
+            const gameFrame = document.getElementById('gameFrame');
+            const gameNameElement = document.getElementById('gameName');
+            const gameLogoElement = document.getElementById('gameLogo');
+            const gameAuthorElement = document.getElementById('gameAuthor');
+
+            // Carrega o jogo via iframe se tiver URL
+            if (gameUrl) {
+                gameFrame.innerHTML = `<iframe src="${gameUrl}" style="width: 100%; height: 100%; border: none; border-radius: 10px;"></iframe>`;
+            } else {
+                gameFrame.innerHTML = '<p>Error Code 123 - The HTML file for the requested game could not be loaded successfully or does not exist.</p>';
+            }
+
+            // Define o nome do jogo
+            if (gameName && gameName !== 'Nome do Jogo') {
+                gameNameElement.textContent = gameName;
+                gameNameElement.classList.remove('placeholder');
+            }
+
+            // Define a logo do jogo
+            if (gameLogoUrl) {
+                gameLogoElement.innerHTML = `<img src="${gameLogoUrl}" alt="Logo ${gameName}">`;
+            }
+
+            // Define o autor do jogo
+            if (gameAuthor && gameAuthor !== '_____') {
+                gameAuthorElement.textContent = `By ${gameAuthor}`;
+                gameAuthorElement.classList.remove('placeholder');
+            }
+        }
+
+        // Função para redirecionar para o site
+        function redirectToSite() {
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            }
+        }
+
+        // Função para alternar tela cheia
+        function toggleFullscreen() {
+            const gameContainer = document.getElementById('gameContainer');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+            if (gameContainer.classList.contains('fullscreen')) {
+                // Sair da tela cheia
+                gameContainer.classList.remove('fullscreen');
+                fullscreenBtn.innerHTML = '⛶';
+                fullscreenBtn.title = 'Tela cheia';
+            } else {
+                // Entrar em tela cheia
+                gameContainer.classList.add('fullscreen');
+                fullscreenBtn.innerHTML = '✕';
+                fullscreenBtn.title = 'Sair da tela cheia';
+            }
+        }
+
+        // Tecla ESC para sair da tela cheia
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const gameContainer = document.getElementById('gameContainer');
+                const fullscreenBtn = document.getElementById('fullscreenBtn');
+                if (gameContainer.classList.contains('fullscreen')) {
+                    gameContainer.classList.remove('fullscreen');
+                    fullscreenBtn.innerHTML = '⛶';
+                    fullscreenBtn.title = 'Tela cheia';
+                }
+            }
+        });
+
+        // Carrega o jogo quando a página carregar
+        window.addEventListener('load', loadGame);
+    </script>
+</body>
+</html>
