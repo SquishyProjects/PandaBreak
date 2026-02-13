@@ -14,193 +14,287 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0a0a0a;
+            color: #ffffff;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
+        /* Liquid Glass Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header */
         .header {
-            background: #2c3e50;
-            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            gap: 15px;
         }
 
         .logo {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             background: url('https://iili.io/FyV5j8Q.png') center/contain no-repeat;
-            margin-right: 15px;
         }
 
         .site-title {
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
         }
 
+        /* Hero */
         .hero {
             text-align: center;
-            padding: 60px 20px;
-            color: white;
+            padding: 80px 20px 60px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            font-weight: 200;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.9;
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.6);
         }
 
+        /* Games Section */
         .games-section {
-            background: rgba(44, 62, 80, 0.9);
-            margin: 0 20px 40px;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 40px 80px;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 20px;
-            color: white;
+            margin-bottom: 60px;
         }
 
         .section-header h2 {
-            font-size: 1.5rem;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
         .section-subtitle {
-            text-align: center;
-            color: #bdc3c7;
-            margin-bottom: 40px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
         }
 
+        /* Games Grid */
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-bottom: 60px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
         }
 
         .game-card {
-            background: #34495e;
-            border-radius: 12px;
+            position: relative;
+            border-radius: 20px;
             overflow: hidden;
-            transition: all 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .game-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
         }
 
         .game-image {
             width: 100%;
-            height: 160px;
-            background: #2c3e50;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.02);
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            border-bottom: 2px solid #2c3e50;
-            background-size: cover;
-            background-position: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            font-weight: 300;
+            position: relative;
+        }
+
+        .game-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent);
         }
 
         .game-title {
-            padding: 15px 20px;
-            color: white;
-            font-weight: 500;
+            padding: 20px;
+            font-weight: 300;
             text-align: center;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
         }
 
-        .game-list-section {
+        /* Footer Info */
+        .footer-info {
             text-align: center;
-            color: white;
-            margin-top: 40px;
+            padding: 60px 20px;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .game-list-section h2 {
-            color: #2ecc71;
-            font-size: 2rem;
-            margin-bottom: 20px;
+        .footer-info h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
-        .game-list-section p {
+        .footer-info p {
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+            line-height: 1.6;
             margin-bottom: 10px;
-            color: #bdc3c7;
         }
 
         .last-updated {
-            color: #95a5a6;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 20px;
         }
 
-        @media (max-width: 1024px) {
-            .games-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
-            
+
             .hero p {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
-            
+
             .games-section {
-                margin: 0 10px 40px;
-                padding: 20px;
+                padding: 20px 20px 60px;
             }
 
             .games-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 20px;
+            }
+
+            .game-image {
+                height: 140px;
+            }
+
+            .game-title {
+                padding: 15px;
+                font-size: 0.9rem;
             }
         }
 
-        @media (max-width: 480px) {
-            .games-grid {
-                grid-template-columns: 1fr;
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
+        .game-card {
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .game-card:nth-child(1) { animation-delay: 0.05s; }
+        .game-card:nth-child(2) { animation-delay: 0.1s; }
+        .game-card:nth-child(3) { animation-delay: 0.15s; }
+        .game-card:nth-child(4) { animation-delay: 0.2s; }
+        .game-card:nth-child(5) { animation-delay: 0.25s; }
+        .game-card:nth-child(6) { animation-delay: 0.3s; }
+        .game-card:nth-child(7) { animation-delay: 0.35s; }
+        .game-card:nth-child(8) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
     <header class="header">
-        <div class="logo"></div>
-        <div class="site-title">PandaBreak</div>
+        <div class="header-content">
+            <div class="logo"></div>
+            <div class="site-title">PANDABREAK</div>
+        </div>
     </header>
 
     <main>
         <section class="hero">
-            <h1>pandabreak's website</h1>
-            <p>Bem-vindo ao pandabreak, eu decidi criar este site em 2025 pra jogar jogos simples e divertidos de navegadores, porém este é diferente, tentei ao máximo remover anúncios de jogos.</p>
+            <h1>pandabreak</h1>
+            <p>Jogos simples e divertidos de navegador, sem anúncios intrusivos. Criado em 2025 para seu tempo livre.</p>
         </section>
 
         <section class="games-section">
             <div class="section-header">
                 <h2>Jogos</h2>
+                <p class="section-subtitle">Escolha um jogo e divirta-se</p>
             </div>
-            <p class="section-subtitle">Don't know what to play? Check the list of games below!</p>
             
             <div class="games-grid">
                 <div class="game-card" onclick="openGame('https://pandabreak.vercel.app/leveldevil.html')">
@@ -243,8 +337,7 @@
                     <div class="game-title">Scary Teacher 3D</div>
                 </div>
 
-                <!-- Novos espaços para jogos -->
-             <div class="game-card" onclick="openGame('https://pandabreak.vercel.app/pacman.html')">
+                <div class="game-card" onclick="openGame('https://pandabreak.vercel.app/pacman.html')">
                     <div class="game-image" style="background-image: url('https://www.lanacion.com.ar/resizer/v2/el-doodle-de-google-con-pac-man-para-halloween-RDBNJMVBYZCOTL2LZDO4VWG67M.png?auth=1fbd9fdebd6ac75723a6241645fa667a42546695b2b8dd82ec26604c25efe17c&width=880&height=586&quality=70&smart=true');"></div>
                     <div class="game-title">Halloween Pac-Man 2025</div>
                 </div>
@@ -256,79 +349,19 @@
 
                 <div class="game-card" onclick="openGame('#')">
                     <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 3</div>
+                    <div class="game-title">Novo Jogo</div>
                 </div>
 
                 <div class="game-card" onclick="openGame('#')">
                     <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 4</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 5</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 6</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 7</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 8</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 9</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 10</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 11</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 12</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 13</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 14</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 15</div>
-                </div>
-
-                <div class="game-card" onclick="openGame('#')">
-                    <div class="game-image">Em breve</div>
-                    <div class="game-title">Novo Jogo 16</div>
+                    <div class="game-title">Novo Jogo</div>
                 </div>
             </div>
 
-            <div class="game-list-section">
-                <h2>pandabreak's website</h2>
-                <p>O nome pandabreak vem obviamente de panda e break que seria um descanso, pois eu espero que você jogue no seu tempo livre certo?</p>
-                <p class="last-updated">4 de Fevereiro de 2026</p>
+            <div class="footer-info">
+                <h2>pandabreak</h2>
+                <p>O nome vem de panda + break (descanso). Aproveite seu tempo livre com jogos simples e divertidos.</p>
+                <p class="last-updated">Atualizado em 4 de Fevereiro de 2026</p>
             </div>
         </section>
     </main>
@@ -339,20 +372,6 @@
                 window.location.href = url;
             }
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.game-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(50px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'all 0.6s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 50);
-            });
-        });
     </script>
 </body>
 </html>
