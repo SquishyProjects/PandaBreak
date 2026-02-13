@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PandaBreak</title>
-     <link rel="icon" href="https://iili.io/FyV5j8Q.png" type="image/png">
+    <link rel="icon" href="https://iili.io/FyV5j8Q.png" type="image/png">
     <style>
         * {
             margin: 0;
@@ -13,37 +13,43 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #2C3E50;
-            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
         /* Header */
         .header {
-            background-color: #34495E;
-            padding: 15px 30px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 100;
+            padding: 20px 40px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .logo {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
         }
 
         .site-name {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ECF0F1;
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
         }
 
         /* Main Content */
@@ -59,54 +65,70 @@
 
         /* Game Container */
         .game-container {
-            background-color: #34495E;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
             padding: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             width: 1200px;
             height: 800px;
             position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .game-frame {
             width: 1160px;
             height: 760px;
             border: none;
-            border-radius: 10px;
-            background-color: #2C3E50;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.01);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
-            color: #BDC3C7;
+            font-size: 16px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
             position: relative;
+            overflow: hidden;
+        }
+
+        .game-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
         }
 
         /* Fullscreen Button */
         .fullscreen-btn {
             position: absolute;
-            bottom: 15px;
-            right: 15px;
-            background-color: rgba(52, 73, 94, 0.9);
-            border: 2px solid #7F8C8D;
-            border-radius: 8px;
-            color: #ECF0F1;
-            font-size: 16px;
-            padding: 10px 12px;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 20px;
+            padding: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 45px;
-            min-height: 45px;
+            min-width: 48px;
+            min-height: 48px;
         }
 
         .fullscreen-btn:hover {
-            background-color: rgba(52, 152, 219, 0.9);
-            border-color: #3498DB;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .fullscreen-btn:active {
@@ -123,6 +145,7 @@
             z-index: 1000;
             border-radius: 0;
             padding: 0;
+            border: none;
         }
 
         .game-container.fullscreen .game-frame {
@@ -136,92 +159,134 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            background-color: #34495E;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             width: 1200px;
+            transition: all 0.3s ease;
+        }
+
+        .game-info:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
         }
 
         .game-logo {
             width: 60px;
             height: 60px;
-            border-radius: 10px;
-            background-color: #2C3E50;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #BDC3C7;
-            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 11px;
+            font-weight: 300;
             text-align: center;
-            border: 2px dashed #5D6D7E;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.3s ease;
+            overflow: hidden;
         }
 
         .game-logo:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.15);
         }
 
         .game-logo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 10px;
         }
 
         .game-text-info {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
+            flex: 1;
         }
 
         .game-name {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ECF0F1;
+            font-size: 22px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            transition: color 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .game-name:hover {
-            color: #3498DB;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .game-name.placeholder {
-            color: #BDC3C7;
+            color: rgba(255, 255, 255, 0.3);
             font-style: italic;
         }
 
         .game-author {
             font-size: 14px;
-            color: #95A5A6;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
             cursor: pointer;
-            transition: color 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .game-author:hover {
-            color: #3498DB;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .game-author.placeholder {
             font-style: italic;
         }
 
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .loading {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
         /* Responsive */
+        @media (max-width: 1280px) {
+            .game-container,
+            .game-info {
+                width: 95vw;
+            }
+
+            .game-frame {
+                width: calc(95vw - 40px);
+            }
+        }
+
         @media (max-width: 768px) {
             .header {
-                padding: 10px 20px;
+                padding: 15px 20px;
+            }
+
+            .header-content {
+                gap: 12px;
             }
 
             .site-name {
-                font-size: 20px;
+                font-size: 16px;
             }
 
             .logo {
-                width: 35px;
-                height: 35px;
+                width: 32px;
+                height: 32px;
             }
 
             .main-content {
@@ -229,17 +294,50 @@
             }
 
             .game-container {
-                width: 1200px;
-                height: 800px;
-                transform: scale(0.35);
-                transform-origin: center;
+                width: calc(100vw - 20px);
+                height: 60vh;
+                padding: 15px;
+            }
+
+            .game-frame {
+                width: calc(100vw - 50px);
+                height: calc(60vh - 30px);
             }
 
             .game-info {
-                width: 1200px;
-                transform: scale(0.35);
-                transform-origin: center;
-                margin-top: -180px;
+                width: calc(100vw - 20px);
+                padding: 15px 20px;
+            }
+
+            .fullscreen-btn {
+                bottom: 20px;
+                right: 20px;
+                min-width: 44px;
+                min-height: 44px;
+                font-size: 18px;
+            }
+
+            .game-logo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .game-name {
+                font-size: 18px;
+            }
+
+            .game-author {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-container {
+                height: 50vh;
+            }
+
+            .game-frame {
+                height: calc(50vh - 30px);
             }
         }
     </style>
@@ -247,17 +345,18 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <img src="https://iili.io/FyV5j8Q.png" alt="PandaBreak Logo" class="logo">
-        <h1 class="site-name">PandaBreak</h1>
+        <div class="header-content">
+            <img src="https://iili.io/FyV5j8Q.png" alt="PandaBreak Logo" class="logo">
+            <h1 class="site-name">PANDABREAK</h1>
+        </div>
     </header>
 
     <!-- Main Content -->
     <main class="main-content">
         <!-- Game Container -->
         <div class="game-container" id="gameContainer">
-            <div class="game-frame" id="gameFrame">
-                <!-- Aqui você pode inserir o HTML do jogo -->
-                <p>Carregue seu jogo aqui...</p>
+            <div class="game-frame loading" id="gameFrame">
+                <p>Carregando jogo...</p>
             </div>
             <button class="fullscreen-btn" id="fullscreenBtn" onclick="toggleFullscreen()" title="Tela cheia">
                 ⛶
@@ -267,7 +366,6 @@
         <!-- Game Info -->
         <div class="game-info">
             <div class="game-logo" id="gameLogo" onclick="redirectToSite()">
-                <!-- Logo do jogo será inserida aqui -->
                 Logo do Jogo
             </div>
             <div class="game-text-info">
@@ -284,13 +382,13 @@
     <script>
         // ==== CONFIGURAÇÃO DO JOGO ====
         // Cole aqui o link do HTML do seu jogo
-        const gameUrl = 'https://www.scary-teacher.com/wp-content/uploads/games/scary-teacher.html'; // Exemplo: 'https://exemplo.com/meu-jogo.html'
+        const gameUrl = 'https://www.scary-teacher.com/wp-content/uploads/games/scary-teacher.html';
         
         // ==== CONFIGURAÇÃO DA LOGO E NOME ====
-        const gameName = 'Scary Teacher 3D'; // Altere aqui o nome do jogo
-        const gameLogoUrl = 'https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=40,height=40,fit=cover,f=auto/ef999c8420c11a5243237168e8128d5d/scary-teacher-3d.png'; // Exemplo: 'https://exemplo.com/logo-jogo.png'
-        const gameAuthor = 'ZnK Games'; // Altere aqui o nome do autor/desenvolvedor
-        const redirectUrl = 'https://pandabreak.vercel.app/'; // Altere aqui o site para onde redirecionar
+        const gameName = 'Scary Teacher 3D';
+        const gameLogoUrl = 'https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=40,height=40,fit=cover,f=auto/ef999c8420c11a5243237168e8128d5d/scary-teacher-3d.png';
+        const gameAuthor = 'ZnK Games';
+        const redirectUrl = 'https://pandabreak.vercel.app/';
 
         // ==== CÓDIGO DO SISTEMA (NÃO ALTERAR) ====
         function loadGame() {
@@ -301,9 +399,11 @@
 
             // Carrega o jogo via iframe se tiver URL
             if (gameUrl) {
-                gameFrame.innerHTML = `<iframe src="${gameUrl}" style="width: 100%; height: 100%; border: none; border-radius: 10px;"></iframe>`;
+                gameFrame.innerHTML = `<iframe src="${gameUrl}" style="width: 100%; height: 100%; border: none; border-radius: 12px;"></iframe>`;
+                gameFrame.classList.remove('loading');
             } else {
-                gameFrame.innerHTML = '<p>Error Code 123 - The HTML file for the requested game could not be loaded successfully or does not exist.</p>';
+                gameFrame.innerHTML = '<p>Erro: O arquivo HTML do jogo não pôde ser carregado.</p>';
+                gameFrame.classList.remove('loading');
             }
 
             // Define o nome do jogo
@@ -337,12 +437,10 @@
             const fullscreenBtn = document.getElementById('fullscreenBtn');
 
             if (gameContainer.classList.contains('fullscreen')) {
-                // Sair da tela cheia
                 gameContainer.classList.remove('fullscreen');
                 fullscreenBtn.innerHTML = '⛶';
                 fullscreenBtn.title = 'Tela cheia';
             } else {
-                // Entrar em tela cheia
                 gameContainer.classList.add('fullscreen');
                 fullscreenBtn.innerHTML = '✕';
                 fullscreenBtn.title = 'Sair da tela cheia';
